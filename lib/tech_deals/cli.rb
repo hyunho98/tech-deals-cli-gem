@@ -1,0 +1,2 @@
+class TechDeals::CLI
+end

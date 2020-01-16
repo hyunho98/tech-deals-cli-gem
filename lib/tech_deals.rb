@@ -1,6 +1,8 @@
-require "tech_deals/version"
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
-module TechDeals
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative './tech_deals/version'
+require_relative './tech_deals/scraper'
+require_relative './tech_deals/deals'
+require_relative './tech_deals/cli'
