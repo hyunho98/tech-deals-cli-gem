@@ -14,7 +14,10 @@ class TechDeals::Scraper
       hold = item.css('div.summary-excerpt p strong').text.split(" ")
       hold.shift
       deal.promo = hold.join(" ").gsub(/[()]/, "")
-      binding.pry
+
+      items << deal
       }
+
+    items
     end
 end
