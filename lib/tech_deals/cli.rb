@@ -1,5 +1,14 @@
 class TechDeals::CLI
 
+  def call
+    hello
+    list_categories
+  end
+
+  def hello
+    puts "Hello! Please begin by selecting a category"
+  end
+
   def list_categories
     cats = TechDeals::Scraper.scrape_categories
     puts "1.View All Items"
@@ -12,8 +21,12 @@ class TechDeals::CLI
     case input
     when 1
       @url = "/deals-1"
+      list_items
+      return
     when 2..(cats.length + 1)
       @url = cats[input-2].url
+      list_items
+      return
     else
       puts "INVALID INPUT"
       list_categories
@@ -33,8 +46,38 @@ class TechDeals::CLI
         end
         x += 1
       end
-      puts "Press ENTER to view the next 10 items || Input -1 to view the last 10 items || Select an item's number to view url"
-      input = gets.to_i
+        input = "zip"
+      while input != "exit" && input != "" && input.to_i == 0
+        output = "Press ENTER to view the next 10 items ||"
+        lineTwo = "OR input \"EXIT\" to exit the program"
+
+        if i == items.length/10
+          output = "Press ENTER to EXIT the program ||"
+          lineTwo = "OR input \"C\" to go back to categories"
+        end
+        if i > 0
+          output += " Input -1 to view the last 10 items ||"
+        end
+
+
+        puts "\n#{output} Select an item's number to view its url"
+        puts "#{lineTwo}"
+        input = gets.strip
+
+        if input.downcase == "exit"
+          goodbye
+          return #ends the program
+        elsif input.downcase == "c"
+          list_categories
+          return
+        elsif input.to_i == 0 && input != ""
+          puts "INVALID INPUT"
+        end
+
+      end
+
+
+      input = input.to_i
 
       if input == -1 && i > 0
         i -= 2
@@ -50,22 +93,27 @@ class TechDeals::CLI
 
           if input == "y"
             list_items
-            break
+            return #break from item input loop
           elsif input == "c"
             list_categories
-            break
+            return #break from item input loop
           elsif input == "n"
-            #goodbye
-            break
+            goodbye
+            return #end the program
           else
             puts "INVALID INPUT"
           end
         end
 
-        break
+        break #break from item list loop
       end
       i += 1
     end
+    goodbye
   end
-  
+
+  def goodbye
+    puts "Goodbye! Hope you found some good deals!"
+  end
+
 end
