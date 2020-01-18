@@ -1,9 +1,10 @@
 class TechDeals::Scraper
 
-  def self.scrape_items(url="/deals-1")
+  def self.scrape_items(url)
     #Scrapes each item on selected page and returns the list of items as an array of objects
     doc = Nokogiri::HTML(open("https://www.dealsource.tech#{url}"))
     items = []
+    binding.pry
 
     doc.css('div.summary-item').each{|item|
       deal = TechDeals::Items.new
