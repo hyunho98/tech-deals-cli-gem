@@ -47,7 +47,7 @@ class TechDeals::CLI
         x += 1
       end
         input = "zip"
-      while input != "exit" && input != "" && input.to_i == 0
+      loop do
         output = "Press ENTER to view the next 10 items ||"
         lineTwo = "OR input \"EXIT\" to exit the program"
 
@@ -69,9 +69,11 @@ class TechDeals::CLI
           return #ends the method
         elsif input.downcase == "c"
           list_categories
-          return
-        elsif input.to_i == 0 && input != ""
+          return #ends the method
+        elsif input != "" && (input.to_i == -1 && i <= 0) && (input.to_i <= (i*10) || input.to_i > (i*10+10) || items[input.to_i - 1] == nil)
           puts "INVALID INPUT"
+        else
+          break
         end
 
       end
