@@ -70,10 +70,10 @@ class TechDeals::CLI
         elsif input.downcase == "c"
           list_categories
           return #ends the method
-        elsif input != "" && (input.to_i == -1 && i <= 0) && (input.to_i <= (i*10) || input.to_i > (i*10+10) || items[input.to_i - 1] == nil)
-          puts "INVALID INPUT"
-        else
+        elsif input == "" || (input.to_i == -1 && i > 0) || (input.to_i > (i*10) && input.to_i <= (i*10+10) && items[input.to_i-1] != nil)
           break
+        else
+          puts "INVALID INPUT"
         end
 
       end
