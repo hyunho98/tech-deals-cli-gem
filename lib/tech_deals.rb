@@ -7,5 +7,3 @@ require_relative './tech_deals/items'
 require_relative './tech_deals/categories'
 require_relative './tech_deals/scraper'
 require_relative './tech_deals/cli'
-
-TechDeals::CLI.new.call

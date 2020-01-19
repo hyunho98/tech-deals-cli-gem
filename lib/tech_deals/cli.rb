@@ -66,7 +66,7 @@ class TechDeals::CLI
 
         if input.downcase == "exit"
           goodbye
-          return #ends the program
+          return #ends the method
         elsif input.downcase == "c"
           list_categories
           return
@@ -87,19 +87,19 @@ class TechDeals::CLI
         puts "URL: #{items[input-1].url}"
 
         loop do
-          puts "Would you like to view another item? Y/N"
+          puts "\nWould you like to view another item? Y/N"
           puts "OR input \"C\" to choose another category"
           input = gets.strip.downcase
 
           if input == "y"
             list_items
-            return #break from item input loop
+            return #end the method
           elsif input == "c"
             list_categories
             return #break from item input loop
           elsif input == "n"
             goodbye
-            return #end the program
+            return #end the method
           else
             puts "INVALID INPUT"
           end
